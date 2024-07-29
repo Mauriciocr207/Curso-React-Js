@@ -27,6 +27,7 @@ export default function GifExpertApp() {
             </Typography>
             <AddCategory onNewCategory={addCategory}/>
             <Alert 
+              data-testid="GifExpertApp.Alert"
               className="bg-red-400 mt-2 w-72 mx-auto p-4"
               open={opernAlert}
               onClose={() => setOpenAlert(false)}

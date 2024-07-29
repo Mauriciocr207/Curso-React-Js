@@ -8,19 +8,23 @@ export default function GifGrid({ category }) {
     const {gifGroups, isLoading} = useFetchGifs(category);
 
     return (
-        <>
+        <div>
         {
             isLoading ? 
-            <GifGridLoading/>
+            <div data-testid="GifGrid.Loading">
+                <GifGridLoading/>
+            </div>
             :
-            <Card className="mb-10 w-full p-5">
-                <Typography variant="h5" className="text-black mb-3">{category}</Typography>
-                <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-                    {gifGroups.map(gifGroup => <GifGroup key={JSON.stringify(gifGroup)} gifs={gifGroup}/>)}
-                </div>
-            </Card>
+            <div data-testid="GifGrid.Card">
+                <Card className="mb-10 w-full p-5">
+                    <Typography variant="h5" className="text-black mb-3">{category}</Typography>
+                    <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                        {gifGroups.map(gifGroup => <GifGroup key={JSON.stringify(gifGroup)} gifs={gifGroup}/>)}
+                    </div>
+                </Card>
+            </div>
         }
-        </>
+        </div>
     );
 }
 

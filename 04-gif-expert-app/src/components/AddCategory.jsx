@@ -1,5 +1,5 @@
-import { Input } from "@material-tailwind/react"
 import { useState } from "react";
+import { Input } from "@material-tailwind/react"
 import {func} from "prop-types";
 
 export default function AddCategory({onNewCategory}) {
@@ -22,7 +22,8 @@ export default function AddCategory({onNewCategory}) {
 
     return (
         <form className="relative mx-auto mt-2 flex w-72 flex-col items-end gap-6" onSubmit={onSubmit}>
-            <Input 
+            <Input
+                data-testid="AddCategory.Input"
                 size="md" 
                 label={focus ? "🔎":"Buscar gif"} 
                 onFocus={onActiveFocus} 
