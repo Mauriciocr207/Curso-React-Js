@@ -3,7 +3,7 @@ import useForm from "../hooks/useForm";
 
 export default function FormCustomHook() {
     
-    const { formState, onInputChamge, onResetForm } = useForm({
+    const { formState, onInputChange, onResetForm } = useForm({
         username: '',
         email: '',
         password: '',
@@ -36,7 +36,7 @@ export default function FormCustomHook() {
                         placeholder="Username"
                         name="username"
                         value={username}
-                        onChange={onInputChamge}
+                        onChange={onInputChange}
                     />
                 </div>
                 <div className="w-2/3 m-auto mt-2 text-left p-4">
@@ -47,7 +47,7 @@ export default function FormCustomHook() {
                         placeholder="Email"
                         name="email"
                         value={email}
-                        onChange={onInputChamge}
+                        onChange={onInputChange}
                     />
                 </div>
                 <div className="w-2/3 m-auto mt-2 text-left p-4">
@@ -58,7 +58,7 @@ export default function FormCustomHook() {
                         placeholder="Contraseña"
                         name="password"
                         value={password}
-                        onChange={onInputChamge}
+                        onChange={onInputChange}
                     />
                 </div>
 

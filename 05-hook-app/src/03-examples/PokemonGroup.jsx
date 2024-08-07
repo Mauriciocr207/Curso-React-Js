@@ -1,4 +1,5 @@
 import PokemonCard from "./PokemonCard";
+import {array} from "prop-types";
 
 export default function PokemonGroup({pokeGroups}) {
   return (
@@ -11,3 +12,9 @@ export default function PokemonGroup({pokeGroups}) {
     </>
   );
 }
+
+PokemonGroup.propTypes = {
+  pokeGroups: array.isRequired,
+}
+
+

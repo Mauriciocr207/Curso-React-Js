@@ -10,7 +10,7 @@ export default function SimpleForm() {
 
     const { username, email } = formState;
 
-    const onInputChamge = ({target}) => {
+    const onInputChange = ({target}) => {
         const { name, value } = target;
         setFormState(prevForm => ({...prevForm, [name]:value}))
     }
@@ -40,7 +40,7 @@ export default function SimpleForm() {
                         placeholder="Username"
                         name="username"
                         value={username}
-                        onChange={onInputChamge}
+                        onChange={onInputChange}
                     />
                 </div>
                 <div className="w-2/3 m-auto mt-2 text-left p-4">
@@ -51,7 +51,7 @@ export default function SimpleForm() {
                         placeholder="Email"
                         name="email"
                         value={email}
-                        onChange={onInputChamge}
+                        onChange={onInputChange}
                     /> 
                     {username === 'strider2' && <UserExist/>}
                 </div>

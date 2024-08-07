@@ -10,11 +10,11 @@ const cache = Cache();
 
 export default function MultipleCustomHooks() {
   const { counter, increment, decrement } = useCounter(0);
-  const [pokeGroups, setPokeGroups] = useState([]);
-  const { data, isLoading } = useFetch(
+  const { isLoading, data } = useFetch(
     `https://pokeapi.co/api/v2/pokemon?limit=12&offset=${counter * 12}`, 
     cache
   );
+  const [pokeGroups, setPokeGroups] = useState([]);
 
   useEffect(() => {
     if (Array.isArray(data?.results)) {
@@ -44,6 +44,7 @@ export default function MultipleCustomHooks() {
       <div className="flex mt-10 justify-between m-auto max-w-[25rem] items-center">
         <button
           onClick={() => counter > 0 && decrement()}
+          data-testid="MCH.PreviousButton"
           className="p-4 bg-blue-600 rounded-lg text-white text-xl font-bold"
         >
           Anterior
@@ -53,6 +54,7 @@ export default function MultipleCustomHooks() {
         </p>
         <button
           onClick={() => increment()}
+          data-testid="MCH.NextButton"
           className="p-4 bg-blue-600 rounded-lg text-white text-xl font-bold"
         >
           Siguiente

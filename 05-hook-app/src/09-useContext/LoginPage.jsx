@@ -9,11 +9,12 @@ export default function LoginPage() {
         <h1>Login Page</h1>
         <hr />
 
-        <pre>
+        <pre data-testid="LoginPage.Pre">
           { JSON.stringify(user, null, 3) }
         </pre>
 
         <button 
+          data-testid="LoginPage.Button"
           className="bg-blue-500 p-2 rounded-lg text-white mt-5"
           onClick={() => setUser({id: 123, name: 'Mau', email: 'mau@gmail.com'})}
         >

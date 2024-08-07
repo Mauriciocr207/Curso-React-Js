@@ -8,7 +8,7 @@ export default function HomePage() {
     <>
         <h1>Home Page</h1>
         <hr />
-        <pre>
+        <pre data-testid="HomePage.Pre">
           { JSON.stringify(user, null, 3) }
         </pre>
     </>

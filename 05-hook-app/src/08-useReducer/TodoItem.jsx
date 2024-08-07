@@ -10,12 +10,18 @@ export default function TodoItem({ id, name, done }) {
   const handleCheck = () => handleChangeTodo({id, name, done: !done});
 
   return (
-    <li className="bg-white rounded-lg shadow-lg p-4 flex items-center mb-3">
+    <li data-testid="TodoItem" className="bg-white rounded-lg shadow-lg p-4 flex items-center mb-3">
       <div className="flex items-center">
-        <input type="checkbox" className="w-full" defaultChecked={done} onChange={handleCheck}/>
+        <input data-testid="TodoItem.Checkbox" type="checkbox" className="w-full" defaultChecked={done} onChange={handleCheck}/>
       </div>
-      <h3 className="w-full pl-2 text-left font-bold text-xl " style={{textDecorationLine: done && "line-through"}}>{name}</h3>
-      <button onClick={() => handleDeleteTodo(id)} className="h-full w-[1.2rem] flex justify-center">
+      <h3 
+        data-testid="TodoItem.Name"
+        className="w-full pl-2 text-left font-bold text-xl " style={{textDecorationLine: done && "line-through"}}
+      >{name}</h3>
+      <button
+        data-testid="TodoItem.DeleteButton"
+        onClick={() => handleDeleteTodo(id)} className="h-full w-[1.2rem] flex justify-center"
+      >
         <MdDelete className="w-full text-red-500"/>
       </button>
     </li>
