@@ -1,29 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getNow } from "../../../UI/helpers";
 
 const initialState = {
-  events: [
-    {
-      _id: new Date().getTime(),
-      title: "Cumpleaños del Jefe",
-      notes: "Comprar pastel",
-      start: getNow(),
-      end: getNow().add({ hours: 2 }),
-      bgColor: "#fafafa",
-      user: {
-        _id: "123",
-        name: "Fernando",
-      },
-    },
-  ],
+  events: [],
   current: null,
+  isLoading: false,
   isModalOpen: false,
+  errorMessage: null,
 };
 
-const calendarSlice = createSlice({
+export const calendarSlice = createSlice({
   name: "calendar",
   initialState,
   reducers: {
+    setInitialEvents: (state, action) => { state.events = action.payload },
     openModal: (state) => {
       state.isModalOpen = true;
     },
@@ -34,37 +23,47 @@ const calendarSlice = createSlice({
       state.current = action.payload;
     },
     createEvent: (state, action) => {
-      state.events.push({
-        _id: new Date().getTime(),
-        user: {
-          _id: "123",
-          name: "Fernando",
-        },
-        ...action.payload,
-      });
-      state.isModalOpen = false;
+      state.events.push(action.payload);
+      state.isLoading = false;
     },
     updateEvent: (state, action) => {
       const event = action.payload;
-      const eventIndex = state.events.findIndex(({_id}) => _id === event._id);
+      const eventIndex = state.events.findIndex(({id}) => id === event.id);
       state.events[eventIndex] = event;
-      state.isModalOpen = false;
+      state.isLoading = false;
     },
     deleteEvent: (state, action) => {
-      const { _id } = action.payload;
-      state.events = state.events.filter(event => event._id !== _id);
+      const { id } = action.payload;
+      state.events = state.events.filter(event => event.id !== id);
+      state.isLoading = false;
       state.isModalOpen = false;
-    }
+    },
+    loading: (state) => { state.isLoading = true },
+    setErrorMessage: (state, action) => {
+      state.errorMessage = action.payload;
+      state.isLoading = false;
+    },
+    removeAllEvents: (state) => { 
+      state.events = [];
+      state.current = null;
+      state.isLoading = false;
+      state.isModalOpen = false;
+      state.errorMessage = null;
+     }
   },
 });
 
 export const {
+  setInitialEvents,
   setCurrentEvent,
   openModal,
   closeModal,
   createEvent,
   updateEvent,
-  deleteEvent
+  deleteEvent,
+  loading,
+  setErrorMessage,
+  removeAllEvents
 } = calendarSlice.actions;
 
 export default calendarSlice.reducer;

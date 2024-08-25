@@ -1,3 +1,5 @@
+import "notyf/notyf.min.css";
+
 export default function AuthLayout({ children }) {
   return (
     <section className="bg-gray-100 dark:bg-gray-900">

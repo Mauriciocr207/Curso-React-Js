@@ -3,10 +3,10 @@ import { Button, ButtonGroup } from "@nextui-org/button";
 import { getNextMonth, getTomorrow, getNow } from "../../helpers";
 import { object, func, string, bool, oneOfType } from "prop-types";
 
-export default function CalendarDatePicker({ value, name, minValue, onChange, isInvalid, errorMessage }) {
+export default function CalendarDatePicker({ label, value, name, minValue, onChange, isInvalid, errorMessage, isDisabled }) {
   return (
     <DatePicker
-        label="Inicio"
+        label={label}
         labelPlacement="inside"
         hideTimeZone
         value={value}
@@ -38,15 +38,18 @@ export default function CalendarDatePicker({ value, name, minValue, onChange, is
             <Button onPress={() => onChange({ target: { name, value: getNextMonth() } })} >+1 Mes</Button>
             </ButtonGroup>
         }
+        isDisabled={isDisabled}
     />
   )
 }
 
 CalendarDatePicker.propTypes = {
+    label: string,
     value: object.isRequired,
     name: string.isRequired,
     minValue: object.isRequired,
     onChange: func.isRequired,
     isInvalid: bool,
-    errorMessage: oneOfType([string, bool, func])
+    errorMessage: oneOfType([string, bool, func]),
+    isDisabled: bool,
 }

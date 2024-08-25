@@ -1,8 +1,6 @@
 const { body } = require("express-validator");
 
 const loginValidation = () => [
-  body("name").notEmpty().withMessage("El nombre es obligatorio"),
-
   body("email")
     .notEmpty()
     .withMessage("El email es obligatorio")

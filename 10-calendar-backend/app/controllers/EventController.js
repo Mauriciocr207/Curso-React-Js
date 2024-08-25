@@ -18,18 +18,20 @@ class EventController {
 
   static async createEvent(req, res) {
     try {
-      const user = req.uid;
+      const user = req.id;
       const event = new EventModel(req.body);
 
       event.user = user;
 
       const eventSaved = await event.save();
+      await eventSaved.populate('user', 'name');
 
       res.json({
         ok: true,
         eventSaved,
       });
     } catch (error) {
+      console.log(error);
       res.status(error.status || 500).json({
         ok: false,
         error,
@@ -39,29 +41,29 @@ class EventController {
 
   static async updateEvent(req, res) {
     try {
-      const uid = req.uid;
+      const id = req.id;
       const eventId = req.params.id;
 
-      const event = await EventModel.findById(eventId);
+      const event = await EventModel.findById(eventId).populate('user', 'name');
 
       if (!event) {
-        throw { status: 404, message: "Evento no existe con este id" };
+        throw { status: 404, message: "Este evento no existe" };
       }
 
-      if (event.user.toString() !== uid) {
+      if (event.user.id !== id) {
         throw { status: 401, message: "Operación no permitida" };
       }
 
       const newEvent = {
         ...req.body,
-        user: uid,
+        user: id,
       };
 
       const eventUpdated = await EventModel.findByIdAndUpdate(
         eventId,
         newEvent,
         { new: true }
-      );
+      ).populate('user', 'name');
 
       res.json({
         ok: true,
@@ -87,7 +89,7 @@ class EventController {
 
   static async deleteEvent(req, res) {
     try {
-      const uid = req.uid;
+      const id = req.id;
       const eventId = req.params.id;
 
       const event = await EventModel.findById(eventId);
@@ -96,7 +98,7 @@ class EventController {
         throw { status: 404, message: "Evento no existe con este id" };
       }
 
-      if (event.user.toString() !== uid) {
+      if (event.user.toString() !== id) {
         throw { status: 401, message: "Operación no permitida" };
       }
 

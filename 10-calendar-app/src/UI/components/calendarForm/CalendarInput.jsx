@@ -2,10 +2,10 @@ import { Input } from "@nextui-org/input";
 import { string, func, bool, oneOfType } from "prop-types"
 import { FaNoteSticky } from "react-icons/fa6";
 
-export default function CalendarInput({ value, onChange, name, isInvalid, errorMessage }) {
+export default function CalendarInput({ label, value, onChange, name, isInvalid, errorMessage, isDisabled }) {
   return (
     <Input
-      label="Título"
+      label={label}
       classNames={{
         inputWrapper: "h-[4rem] ",
       }}
@@ -20,14 +20,17 @@ export default function CalendarInput({ value, onChange, name, isInvalid, errorM
       value={value}
       onChange={onChange}
       name={name}
+      isDisabled={isDisabled}
     />
   );
 }
 
 CalendarInput.propTypes = {
+    label: string,
     value: string.isRequired,
     onChange: func.isRequired,
     name: string.isRequired,
     isInvalid: bool,
-    errorMessage: oneOfType([string, bool])
+    errorMessage: oneOfType([string, bool]),
+    isDisabled: bool,
 }

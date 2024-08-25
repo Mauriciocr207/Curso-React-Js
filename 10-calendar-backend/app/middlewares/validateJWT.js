@@ -10,9 +10,9 @@ function validateJWT(req, res, next) {
 
     const token = bearerJWT.substring(7, bearerJWT.length);    
 
-    const { uid, name } = jwt.verify(token, process.env.SECRET_JWT_SEED);
-
-    req.uid = uid;
+    const { id, name } = jwt.verify(token, process.env.SECRET_JWT_SEED);
+    
+    req.id = id;
     req.name = name;
 
     next();
@@ -20,7 +20,7 @@ function validateJWT(req, res, next) {
     if (error.name === "JsonWebTokenError") {
       return res.status(401).json({
         ok: false,
-        error: { status: 401, message: "invalid jason web token" },
+        error: { status: 401, message: "invalid json web token" },
       });
     }
 

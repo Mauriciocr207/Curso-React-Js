@@ -25,6 +25,12 @@ const eventSchema = new Schema({
     toJSON: {
         transform: (doc, ret) => {
             ret.id = ret._id;
+
+            if(ret.user?._id) {
+                ret.user.id = ret.user._id;
+                delete ret.user._id;
+            }
+
             delete ret._id;
             delete ret.__v;
         }

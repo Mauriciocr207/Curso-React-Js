@@ -17,10 +17,13 @@ class AuthController {
 
       await newUser.save();
 
+      const token = await generateJWT(newUser.id, newUser.name);
+
       res.json({
         ok: true,
-        uid: newUser.id,
+        id: newUser.id,
         name: newUser.name,
+        token
       });
     } catch (error) {
       res.status(error.status).json({
@@ -33,7 +36,7 @@ class AuthController {
   static async login(req, res) {
     try {
       const defualtErrorMessage = "Usuario o contraseña incorrectos";
-      const { name, email, pass } = req.body;
+      const { email, pass } = req.body;
       const user = await UserModel.findOne({ email });
 
       if (!user) {
@@ -50,7 +53,7 @@ class AuthController {
 
       res.json({
         ok: true,
-        uid: user.id,
+        id: user.id,
         name: user.name,
         token,
       });
@@ -68,13 +71,13 @@ class AuthController {
 
   static async reValidateToken(req, res) {
     try {
-      const { uid, name } = req;
+      const { id, name } = req;
 
-      const token = await generateJWT(uid, name);
+      const token = await generateJWT(id, name);
 
       res.json({
         ok: true,
-        uid,
+        id,
         name,
         token,
       });

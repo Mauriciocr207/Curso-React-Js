@@ -1,5 +1,9 @@
-import calendarFormValidation from "./CalendarFormValidation";
+import calendarFormValidation from "./calendarFormValidation";
+import loginValidation from "./loginValidation";
+import registerValidation from "./registerValidation";
 
 export {
-    calendarFormValidation
+    calendarFormValidation,
+    loginValidation,
+    registerValidation
 }
