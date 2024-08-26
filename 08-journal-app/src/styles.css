@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.notyf__toast.alert-rounded {
+    border-radius: .7rem;
+}

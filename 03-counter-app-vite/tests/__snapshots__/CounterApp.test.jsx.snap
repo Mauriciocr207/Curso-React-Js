@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CounterApp test valid snapshot 1`] = `
+<div>
+  <h1>
+    CounterApp
+  </h1>
+  <h2
+    data-testid="CounterApp.count"
+  >
+    100
+  </h2>
+  <button
+    data-testid="CounterApp.inc"
+  >
+    +
+  </button>
+  <button
+    data-testid="CounterApp.dec"
+  >
+    -
+  </button>
+  <button
+    data-testid="CounterApp.res"
+  >
+    Reset
+  </button>
+</div>
+`;

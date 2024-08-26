@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FirstApp test render component 1`] = `
+<div>
+  <h1
+    data-testid="FirstApp.title"
+  >
+    Hola, Soy Mau
+  </h1>
+  <p
+    data-testid="FirstApp.subtitle"
+  >
+    No hay subtitulo
+  </p>
+  <p
+    data-testid="FirstApp.subtitle"
+  >
+    No hay subtitulo
+  </p>
+</div>
+`;
